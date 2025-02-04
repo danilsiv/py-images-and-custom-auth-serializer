@@ -39,7 +39,7 @@ class AuthTokenSerializer(serializers.Serializer):
     )
     password = serializers.CharField(
         label=gettext_lazy("Password"),
-        style={'input_type': 'password'},
+        style={"input_type": "password"},
         trim_whitespace=False,
         write_only=True
     )
@@ -59,7 +59,9 @@ class AuthTokenSerializer(serializers.Serializer):
                 password=password
             )
             if not user:
-                msg = gettext_lazy("Unable to log in with provided credentials.")
+                msg = gettext_lazy(
+                    "Unable to log in with provided credentials."
+                )
                 raise serializers.ValidationError(msg, code="authorization")
         else:
             msg = gettext_lazy("Must include 'email' and 'password'.")
